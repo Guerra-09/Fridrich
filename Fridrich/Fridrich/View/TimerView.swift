@@ -7,60 +7,22 @@
 
 import SwiftUI
 
-class TimerViewModel: ObservableObject {
-
-    @Published var secondsElapsed = 0.0
-    @Published var recording = false
-    @Published var tapped = false
-    @Published var timing = false
-    @Published var isRunning: Bool = false
-    @Published var lastTime: Double = 0.0
-    @Published var mode: stopWatchMode = .stopped
-    
-    var timer = Timer()
-
-    func start() {
-        
-        mode = .running
-        if self.timing {
-            
-            timer = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true) { timer in
-                self.secondsElapsed += 0.1 }
-        }
-    }
-    
-
-    func stop() {
-
-        timer.invalidate()
-        lastTime = secondsElapsed
-        secondsElapsed = 0
-        mode = .stopped
-
-    }
-    
-
-    enum stopWatchMode {
-        case running, stopped, pause
-    }
-}
 
 
-
-
-
-
-    
 
 struct TimerView: View {
     
     @ObservedObject var timerViewModel = TimerViewModel()
     @State var states: String = ""
-    @State var lastTimes: [String] = ["39.7"]
+    @State var lastTimes: [String] = ["Tiempos"]
     @State var squareBackground : Color = .red
     
     
+    
+    
     var body: some View {
+        
+        var timeInSeconds = String(format: "%.1f", timerViewModel.secondsElapsed)
         
         let longPressDrag = LongPressGesture(minimumDuration: 0.5)
             .onEnded { _ in
@@ -68,15 +30,15 @@ struct TimerView: View {
                 timerViewModel.recording = true
                 timerViewModel.timing = true
                 timerViewModel.isRunning = true
+            
+                
             }
             .sequenced(before: DragGesture(minimumDistance: 0))
             .onEnded { _ in
                 states = "Long press release"
                 timerViewModel.recording = false
                 
-                
                 timerViewModel.start()
-                
             }
         
         
@@ -84,27 +46,39 @@ struct TimerView: View {
         
             
         VStack {
+            // States: just to see what the user it's doing
             Text(states)
             
-    
-            
-            Text(!(timerViewModel.mode == .stopped) ? String(format: "%.1f", timerViewModel.secondsElapsed) : String(format: "%.1f", timerViewModel.lastTime))
-                .frame(width: 300, height: 300)
-                .background(timerViewModel.isRunning ? .green :squareBackground)
-                .cornerRadius(25)
-            
+                        
+//             String(format: %.1f) should be changed for DateFormat
+            if Double(timeInSeconds) == 60.0 {
+                
+                
+                
+            } else {
+                
+                Text(!(timerViewModel.mode == .stopped) ?
+                        String(format: "%.1f",timerViewModel.secondsElapsed) :
+                        String(format: "%.1f", timerViewModel.lastTime))
+                    .font(.custom("", size: 70))
+                    .frame(width: 300, height: 300)
+                    .background(timerViewModel.isRunning ? .green :squareBackground)
+                    .cornerRadius(25)
+            }
+
             Text("recording: \(timerViewModel.recording.description) \ntapped: \(timerViewModel.tapped.description)\ntiming: \(timerViewModel.timing.description)")
                 .font(.body)
             
             List {
+            
                 ForEach(lastTimes, id: \.self){ index in
                     Text("\(index)")
                 }
             }
             .padding(.top)
             .padding(.bottom)
-            
-            
+            // needs .onMove, .OnEdit, ... modifiers.
+
         } // End of Vstack
         
         
@@ -142,7 +116,12 @@ struct TimerView: View {
         }
         .gesture(longPressDrag)
         
+        .onAppear {
+            
+        }
+        
     }
+    
 }
 
 
@@ -154,3 +133,15 @@ struct TimerView_Previews: PreviewProvider {
     }
 }
  
+
+//extension Text {
+//
+//    func mod() -> some View {
+//
+//        self.frame(width: 300, height: 300)
+//            .background(timerViewModel.isRunning ? .green :squareBackground)
+//            .cornerRadius(25)
+//
+//    }
+//
+//}

@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		66338176286BFD2A00AF250A /* TimerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66338175286BFD2A00AF250A /* TimerViewModel.swift */; };
+		66338178286BFDF600AF250A /* TimesRecordedModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66338177286BFDF600AF250A /* TimesRecordedModel.swift */; };
 		66483F512868BB820033D5A6 /* test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66483F502868BB820033D5A6 /* test.swift */; };
 		66483F532868C0B50033D5A6 /* TimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66483F522868C0B50033D5A6 /* TimerView.swift */; };
 		66483F552868D4EE0033D5A6 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66483F542868D4EE0033D5A6 /* ProfileView.swift */; };
@@ -17,9 +19,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		66338175286BFD2A00AF250A /* TimerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerViewModel.swift; sourceTree = "<group>"; };
+		66338177286BFDF600AF250A /* TimesRecordedModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimesRecordedModel.swift; sourceTree = "<group>"; };
 		66483F502868BB820033D5A6 /* test.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = test.swift; sourceTree = "<group>"; };
 		66483F522868C0B50033D5A6 /* TimerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerView.swift; sourceTree = "<group>"; };
 		66483F542868D4EE0033D5A6 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
+		66EEC2D128693A5C004FAAFD /* MyPlayground.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = MyPlayground.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		66F867962868053600653486 /* Fridrich.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Fridrich.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		66F867992868053600653486 /* FridrichApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FridrichApp.swift; sourceTree = "<group>"; };
 		66F8679B2868053600653486 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -38,6 +43,41 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		66338172286BFCE000AF250A /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				66338177286BFDF600AF250A /* TimesRecordedModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		66338173286BFCE900AF250A /* View */ = {
+			isa = PBXGroup;
+			children = (
+				66F8679B2868053600653486 /* ContentView.swift */,
+				66483F522868C0B50033D5A6 /* TimerView.swift */,
+				66483F542868D4EE0033D5A6 /* ProfileView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		66338174286BFCF100AF250A /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				66338175286BFD2A00AF250A /* TimerViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		66338179286BFF4300AF250A /* TestingOnly */ = {
+			isa = PBXGroup;
+			children = (
+				66EEC2D128693A5C004FAAFD /* MyPlayground.playground */,
+				66483F502868BB820033D5A6 /* test.swift */,
+			);
+			path = TestingOnly;
+			sourceTree = "<group>";
+		};
 		66F8678D2868053600653486 = {
 			isa = PBXGroup;
 			children = (
@@ -58,10 +98,10 @@
 			isa = PBXGroup;
 			children = (
 				66F867992868053600653486 /* FridrichApp.swift */,
-				66F8679B2868053600653486 /* ContentView.swift */,
-				66483F522868C0B50033D5A6 /* TimerView.swift */,
-				66483F542868D4EE0033D5A6 /* ProfileView.swift */,
-				66483F502868BB820033D5A6 /* test.swift */,
+				66338179286BFF4300AF250A /* TestingOnly */,
+				66338174286BFCF100AF250A /* ViewModel */,
+				66338173286BFCE900AF250A /* View */,
+				66338172286BFCE000AF250A /* Model */,
 				66F8679D2868053700653486 /* Assets.xcassets */,
 				66F8679F2868053700653486 /* Preview Content */,
 			);
@@ -150,6 +190,8 @@
 				66483F512868BB820033D5A6 /* test.swift in Sources */,
 				66483F552868D4EE0033D5A6 /* ProfileView.swift in Sources */,
 				66483F532868C0B50033D5A6 /* TimerView.swift in Sources */,
+				66338178286BFDF600AF250A /* TimesRecordedModel.swift in Sources */,
+				66338176286BFD2A00AF250A /* TimerViewModel.swift in Sources */,
 				66F8679A2868053600653486 /* FridrichApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -296,7 +338,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -325,7 +367,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

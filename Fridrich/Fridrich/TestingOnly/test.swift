@@ -7,39 +7,42 @@
 import SwiftUI
 
 
-struct test: View {
-    
-    /// for visual indicators
-    @State var recording = false
-    @State var tapped = false
-    
-    var body: some View {
-        let longPressDrag = LongPressGesture(minimumDuration: 0.5)
-            .onEnded { _ in
-                print("Long press start")
-                recording = true
-            }
-            .sequenced(before: DragGesture(minimumDistance: 0))
-            .onEnded { _ in
-                print("Long press release")
-                recording = false
-            }
-        
-        Circle()
-            .fill(recording ? Color.red : Color.blue)
-            .opacity(tapped ? 0.5 : 1)
-            .frame(width: 100, height: 100)
-            
-            .onTapGesture {
-                print("Tapped")
-                
-                tapped = true
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) { tapped = false }
-            }
-            .gesture(longPressDrag)
 
-    }
-}
+
+
+//struct test: View {
+//
+//    /// for visual indicators
+//    @State var recording = false
+//    @State var tapped = false
+//
+//    var body: some View {
+//        let longPressDrag = LongPressGesture(minimumDuration: 0.5)
+//            .onEnded { _ in
+//                print("Long press start")
+//                recording = true
+//            }
+//            .sequenced(before: DragGesture(minimumDistance: 0))
+//            .onEnded { _ in
+//                print("Long press release")
+//                recording = false
+//            }
+//
+//        Circle()
+//            .fill(recording ? Color.red : Color.blue)
+//            .opacity(tapped ? 0.5 : 1)
+//            .frame(width: 100, height: 100)
+//
+//            .onTapGesture {
+//                print("Tapped")
+//
+//                tapped = true
+//                DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) { tapped = false }
+//            }
+//            .gesture(longPressDrag)
+//
+//    }
+//}
 
 
 
@@ -121,11 +124,11 @@ struct test: View {
 //    }
 //}
 //
-struct test_Previews: PreviewProvider {
-    static var previews: some View {
-        test()
-    }
-}
+//struct test_Previews: PreviewProvider {
+//    static var previews: some View {
+//        test()
+//    }
+//}
 
 
 

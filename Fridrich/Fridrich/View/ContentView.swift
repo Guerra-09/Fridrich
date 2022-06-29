@@ -41,7 +41,7 @@ struct ContentView: View {
                 
             } //End TabView
             
-            .navigationTitle("TimeView")
+            .navigationTitle("TimerView")
             
         } // End NavigationView
         

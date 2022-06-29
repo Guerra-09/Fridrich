@@ -7,14 +7,6 @@
 
 import SwiftUI
 
-struct UserModel {
-    
-    let displayName: String
-    
-}
-
-
-
 
 
 struct ProfileView: View {
@@ -73,7 +65,7 @@ struct ProfileView: View {
                 
                 TextField("Name", text: $newUsername)
                         .frame(width: 300, height: 30)
-                        .padding(.top, 80)
+                        .padding(.top)
                         .textFieldStyle(.roundedBorder)
                         
 
@@ -81,7 +73,7 @@ struct ProfileView: View {
                 Button {
                     
                     username = newUsername
-                    
+                    editingName.toggle()
                     
                 } label: {
                     Text("Save")
