@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		662541ED286FB5B100DE6222 /* scrambleGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 662541EC286FB5B100DE6222 /* scrambleGenerator.swift */; };
 		66338176286BFD2A00AF250A /* TimerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66338175286BFD2A00AF250A /* TimerViewModel.swift */; };
 		66338178286BFDF600AF250A /* TimesRecordedModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66338177286BFDF600AF250A /* TimesRecordedModel.swift */; };
 		66483F512868BB820033D5A6 /* test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66483F502868BB820033D5A6 /* test.swift */; };
@@ -19,6 +20,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		662541EC286FB5B100DE6222 /* scrambleGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = scrambleGenerator.swift; sourceTree = "<group>"; };
 		66338175286BFD2A00AF250A /* TimerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerViewModel.swift; sourceTree = "<group>"; };
 		66338177286BFDF600AF250A /* TimesRecordedModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimesRecordedModel.swift; sourceTree = "<group>"; };
 		66483F502868BB820033D5A6 /* test.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = test.swift; sourceTree = "<group>"; };
@@ -65,6 +67,7 @@
 			isa = PBXGroup;
 			children = (
 				66338175286BFD2A00AF250A /* TimerViewModel.swift */,
+				662541EC286FB5B100DE6222 /* scrambleGenerator.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -188,6 +191,7 @@
 			files = (
 				66F8679C2868053600653486 /* ContentView.swift in Sources */,
 				66483F512868BB820033D5A6 /* test.swift in Sources */,
+				662541ED286FB5B100DE6222 /* scrambleGenerator.swift in Sources */,
 				66483F552868D4EE0033D5A6 /* ProfileView.swift in Sources */,
 				66483F532868C0B50033D5A6 /* TimerView.swift in Sources */,
 				66338178286BFDF600AF250A /* TimesRecordedModel.swift in Sources */,

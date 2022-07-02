@@ -15,7 +15,7 @@ struct ContentView: View {
         NavigationView {
             TabView {
                 
-                TimerView()
+                TimerView(scramble: getAlgorithm())
                     .tabItem {
                         Image(systemName: "timer")
                         Text("time")

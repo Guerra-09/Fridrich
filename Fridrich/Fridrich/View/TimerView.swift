@@ -13,20 +13,24 @@ import SwiftUI
 struct TimerView: View {
     
     @ObservedObject var timerViewModel = TimerViewModel()
-    @State var states: String = ""
+    @State var states: [String] = []
     @State var lastTimes: [String] = ["Tiempos"]
+    @State var scramble: [String]
     @State var squareBackground : Color = .red
     
-    
+    init(scramble: [String]) {
+        self.scramble = getAlgorithm()
+    }
     
     
     var body: some View {
+    
         
-        var timeInSeconds = String(format: "%.1f", timerViewModel.secondsElapsed)
+        let timeInSeconds = String(format: "%.1f", timerViewModel.secondsElapsed)
         
         let longPressDrag = LongPressGesture(minimumDuration: 0.5)
             .onEnded { _ in
-                states = "Long press start"
+                //states = "Long press start"
                 timerViewModel.recording = true
                 timerViewModel.timing = true
                 timerViewModel.isRunning = true
@@ -35,19 +39,30 @@ struct TimerView: View {
             }
             .sequenced(before: DragGesture(minimumDistance: 0))
             .onEnded { _ in
-                states = "Long press release"
+                //states = "Long press release"
                 timerViewModel.recording = false
                 
                 timerViewModel.start()
             }
         
-        
-        
-        
             
         VStack {
             // States: just to see what the user it's doing
-            Text(states)
+            //states = getAlgorithm()
+            
+ 
+            HStack{
+                ForEach(scramble, id: \.self) { index in
+                    
+                    VStack{
+                        
+                    }
+                    Text("\(index) ")
+                    
+                }
+            }
+            
+            
             
                         
 //             String(format: %.1f) should be changed for DateFormat
@@ -56,6 +71,7 @@ struct TimerView: View {
                 
                 
             } else {
+                
                 
                 Text(!(timerViewModel.mode == .stopped) ?
                         String(format: "%.1f",timerViewModel.secondsElapsed) :
@@ -87,7 +103,7 @@ struct TimerView: View {
         
         
         .onTapGesture {
-            states = "Tapped"
+            //states = "Tapped"
             
             
             //Si el tiempo esta corriendo, para el tiempo y lo agrega a la lista
@@ -117,11 +133,11 @@ struct TimerView: View {
         .gesture(longPressDrag)
         
         .onAppear {
+            //scramble = getAlgorithm()
             
         }
         
     }
-    
 }
 
 
@@ -129,7 +145,7 @@ struct TimerView: View {
 
 struct TimerView_Previews: PreviewProvider {
     static var previews: some View {
-        TimerView()
+        TimerView(scramble: getAlgorithm())
     }
 }
  

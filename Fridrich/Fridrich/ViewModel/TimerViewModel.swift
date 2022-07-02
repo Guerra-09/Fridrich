@@ -20,6 +20,7 @@ class TimerViewModel: ObservableObject {
     
     var timer = Timer()
 
+
     func start() {
         mode = .running
         if self.timing {

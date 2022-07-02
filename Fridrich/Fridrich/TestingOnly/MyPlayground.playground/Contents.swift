@@ -2,50 +2,34 @@
 
 import Foundation
   
-// Tienen que ser 20
-// DUBLFR
+class AlgorithmCreator {
 
-//let time: Date = "04:50"
-//
-//let date = time.formatted()
-//print(date)
-
-
-class randomAlgorithm {
-
+    var algorithmList: [String] = []
     var count: Int = 0
-    var array: [String] = ["D", "U", "B", "L", "F", "R"]
-    var add: String = ""
-    var alg: [String] = []
+    var newMove: String?
+    var reverse: Int?
 
-
-
-    func generate() {
-
-        while count < 20 {
-
-            let doble: Int = Int.random(in: 1...2)
-
-            if doble == 1 {
-                add = array.randomElement() ?? "L"
-                alg.append(add)
-
-            } else {
-                add = array.randomElement() ?? "L"
-                alg.append("2\(add)")
-            }
-
-
-
-            count+=1
-
+    func getAlgorithm() -> [String] {
+      var algorithm: [String] = []
+      let moves = ["L", "R", "F", "U", "B", "D"]
+      var last = ""
+      var posibilities: [String] = []
+      for _ in 1...20 {
+        posibilities = []
+        var move = moves.randomElement()!
+        while move == last {
+          move = moves.randomElement()!
         }
+        posibilities.append(contentsOf: ["\(move)", "\(move)*", "2\(move)"])
+        algorithm.append(posibilities.randomElement()!)
+        last = move
+      }
 
-        print(alg)
-
+      return algorithm
+      
     }
-
+    
 }
 
-var poto = randomAlgorithm()
-poto.generate()
+var test = AlgorithmCreator()
+test.getAlgorithm()
