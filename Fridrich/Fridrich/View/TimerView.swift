@@ -15,85 +15,100 @@ struct TimerView: View {
     @ObservedObject var timerViewModel = TimerViewModel()
     @State var states: [String] = []
     @State var lastTimes: [String] = ["Tiempos"]
+    @State var lastTimesInt: [Int] = []
     @State var scramble: [String]
     @State var squareBackground : Color = .red
+    @State var minutin: Int = 0
+    @State var average: Double = 0.0
+
+    
+
     
     init(scramble: [String]) {
-        self.scramble = getAlgorithm()
+        self.scramble = getAlgorithm()  
     }
     
     
     var body: some View {
-    
-        
-        let timeInSeconds = String(format: "%.1f", timerViewModel.secondsElapsed)
-        
+
+        // Long Tapped
         let longPressDrag = LongPressGesture(minimumDuration: 0.5)
+        
             .onEnded { _ in
-                //states = "Long press start"
-                timerViewModel.recording = true
-                timerViewModel.timing = true
-                timerViewModel.isRunning = true
-            
-                
+        
+                if timerViewModel.timing == false {
+    
+                        //states = "Long press start"
+                        timerViewModel.recording = true
+                        timerViewModel.timing = true
+                        timerViewModel.isRunning = true
+                    
+                } else {
+                    timerViewModel.stop()
+                    timerViewModel.isRunning = false
+                    timerViewModel.timing = false
+                    lastTimes.append(String(timerViewModel.secondsLastTime))
+                    lastTimesInt.append(timerViewModel.secondsLastTime)
+                    getAverage()
+                }
             }
             .sequenced(before: DragGesture(minimumDistance: 0))
-            .onEnded { _ in
-                //states = "Long press release"
-                timerViewModel.recording = false
-                
-                timerViewModel.start()
-            }
+                        .onEnded { _ in
+                            //states = "Long press release"
+                            timerViewModel.recording = false
+                            
+                            timerViewModel.start()
+                        }
+        
+            
         
             
         VStack {
             // States: just to see what the user it's doing
             //states = getAlgorithm()
             
- 
-            HStack{
-                ForEach(scramble, id: \.self) { index in
-                    
-                    VStack{
-                        
-                    }
-                    Text("\(index) ")
-                    
-                }
-            }
+            
+///Mark: For the scramble view
+//            HStack{
+//
+//
+//                ForEach(scramble, id: \.self) { index in
+//                    VStack{}
+//                    Text("\(index) ")
+//                }
+//
+//            }
+
             
             
             
-                        
-//             String(format: %.1f) should be changed for DateFormat
-            if Double(timeInSeconds) == 60.0 {
-                
-                
-                
-            } else {
-                
-                
-                Text(!(timerViewModel.mode == .stopped) ?
-                        String(format: "%.1f",timerViewModel.secondsElapsed) :
-                        String(format: "%.1f", timerViewModel.lastTime))
+            //  Time in the square
+            Text("\(timerViewModel.secondsElapsed)")
                     .font(.custom("", size: 70))
                     .frame(width: 300, height: 300)
                     .background(timerViewModel.isRunning ? .green :squareBackground)
                     .cornerRadius(25)
-            }
-
-            Text("recording: \(timerViewModel.recording.description) \ntapped: \(timerViewModel.tapped.description)\ntiming: \(timerViewModel.timing.description)")
+            
+            
+            //  registring haptics
+            
+            Text("recording: \(timerViewModel.recording.description) \ntapped: \(timerViewModel.tapped.description)\ntiming: \(timerViewModel.timing.description)\ncounts: \(lastTimesInt.count)")
                 .font(.body)
             
-            List {
             
+            // appended times
+            List {
                 ForEach(lastTimes, id: \.self){ index in
                     Text("\(index)")
                 }
             }
+            // needs .onMove, .OnEdit, ... modifiers.
             .padding(.top)
             .padding(.bottom)
-            // needs .onMove, .OnEdit, ... modifiers.
+            
+            
+            Text("AVG: \(average)")
+            
 
         } // End of Vstack
         
@@ -106,14 +121,14 @@ struct TimerView: View {
             //states = "Tapped"
             
             
-            //Si el tiempo esta corriendo, para el tiempo y lo agrega a la lista
+            // Appending time in list
+            
             if timerViewModel.timing {
-                
                 timerViewModel.stop()
                 timerViewModel.isRunning = false
                 timerViewModel.timing = false
-                lastTimes.append(String(format: "%.1f", timerViewModel.lastTime))
-                
+                lastTimes.append(String(timerViewModel.secondsLastTime))
+                lastTimesInt.append(timerViewModel.secondsLastTime)
             }
             
             if timerViewModel.isRunning {
@@ -127,6 +142,7 @@ struct TimerView: View {
                 timerViewModel.tapped = false
                 squareBackground = .yellow
                 squareBackground = .red
+                getAverage()
             }
             
         }
@@ -135,9 +151,24 @@ struct TimerView: View {
         .onAppear {
             //scramble = getAlgorithm()
             
+            
         }
         
     }
+    
+    func getAverage() {
+        
+        var sum = 0
+
+        for times in lastTimesInt {
+            
+            sum += times
+            average = Double(sum / lastTimesInt.count)
+        }
+
+        
+    }
+    
 }
 
 
@@ -149,15 +180,3 @@ struct TimerView_Previews: PreviewProvider {
     }
 }
  
-
-//extension Text {
-//
-//    func mod() -> some View {
-//
-//        self.frame(width: 300, height: 300)
-//            .background(timerViewModel.isRunning ? .green :squareBackground)
-//            .cornerRadius(25)
-//
-//    }
-//
-//}
