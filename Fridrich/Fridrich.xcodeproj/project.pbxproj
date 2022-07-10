@@ -10,9 +10,9 @@
 		662541ED286FB5B100DE6222 /* scrambleGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 662541EC286FB5B100DE6222 /* scrambleGenerator.swift */; };
 		66338176286BFD2A00AF250A /* TimerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66338175286BFD2A00AF250A /* TimerViewModel.swift */; };
 		66338178286BFDF600AF250A /* TimesRecordedModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66338177286BFDF600AF250A /* TimesRecordedModel.swift */; };
-		66483F512868BB820033D5A6 /* test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66483F502868BB820033D5A6 /* test.swift */; };
 		66483F532868C0B50033D5A6 /* TimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66483F522868C0B50033D5A6 /* TimerView.swift */; };
 		66483F552868D4EE0033D5A6 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66483F542868D4EE0033D5A6 /* ProfileView.swift */; };
+		66EA16792879FA82002D5205 /* TestMVVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66EA16782879FA82002D5205 /* TestMVVM.swift */; };
 		66F8679A2868053600653486 /* FridrichApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66F867992868053600653486 /* FridrichApp.swift */; };
 		66F8679C2868053600653486 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66F8679B2868053600653486 /* ContentView.swift */; };
 		66F8679E2868053700653486 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 66F8679D2868053700653486 /* Assets.xcassets */; };
@@ -23,10 +23,9 @@
 		662541EC286FB5B100DE6222 /* scrambleGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = scrambleGenerator.swift; sourceTree = "<group>"; };
 		66338175286BFD2A00AF250A /* TimerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerViewModel.swift; sourceTree = "<group>"; };
 		66338177286BFDF600AF250A /* TimesRecordedModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimesRecordedModel.swift; sourceTree = "<group>"; };
-		66483F502868BB820033D5A6 /* test.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = test.swift; sourceTree = "<group>"; };
 		66483F522868C0B50033D5A6 /* TimerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerView.swift; sourceTree = "<group>"; };
 		66483F542868D4EE0033D5A6 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
-		66EEC2D128693A5C004FAAFD /* MyPlayground.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = MyPlayground.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		66EA16782879FA82002D5205 /* TestMVVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestMVVM.swift; sourceTree = "<group>"; };
 		66F867962868053600653486 /* Fridrich.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Fridrich.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		66F867992868053600653486 /* FridrichApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FridrichApp.swift; sourceTree = "<group>"; };
 		66F8679B2868053600653486 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -75,8 +74,7 @@
 		66338179286BFF4300AF250A /* TestingOnly */ = {
 			isa = PBXGroup;
 			children = (
-				66EEC2D128693A5C004FAAFD /* MyPlayground.playground */,
-				66483F502868BB820033D5A6 /* test.swift */,
+				66EA16782879FA82002D5205 /* TestMVVM.swift */,
 			);
 			path = TestingOnly;
 			sourceTree = "<group>";
@@ -190,8 +188,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				66F8679C2868053600653486 /* ContentView.swift in Sources */,
-				66483F512868BB820033D5A6 /* test.swift in Sources */,
 				662541ED286FB5B100DE6222 /* scrambleGenerator.swift in Sources */,
+				66EA16792879FA82002D5205 /* TestMVVM.swift in Sources */,
 				66483F552868D4EE0033D5A6 /* ProfileView.swift in Sources */,
 				66483F532868C0B50033D5A6 /* TimerView.swift in Sources */,
 				66338178286BFDF600AF250A /* TimesRecordedModel.swift in Sources */,

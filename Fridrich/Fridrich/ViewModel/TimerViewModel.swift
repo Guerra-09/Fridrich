@@ -8,51 +8,54 @@
 import Foundation
 
 class TimerViewModel: ObservableObject {
-
-    @Published var recording = false
-    @Published var tapped = false
-    @Published var timing = false
-    @Published var isRunning: Bool = false
     
-    @Published var secondsElapsed = 0
-    @Published var secondsLastTime = 0
-    @Published var timeFormatter: String = "0"
-    
-    
+    @Published var timeElapsedFormatted = "00:00.00"
     @Published var mode: stopWatchMode = .stopped
-    
-    
-    var timerSeconds = Timer()
-    var timerMiliSeconds = Timer()
 
+    var secondsElapsed = 0.0
+    var completedSecondsElapsed = 0.0
+    var timer = Timer()
+    
 
     func start() {
-        
-        
-        mode = .running
-        if self.timing {
-            timerSeconds = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { timer in
-                self.secondsElapsed += 1 }
+        self.mode = .timing
+        timer = Timer.scheduledTimer(withTimeInterval: 0.01, repeats: true) { timer in
+        self.secondsElapsed += 0.01
+        self.formatTime()
         }
         
-        self.timeFormatter = "\(self.secondsElapsed)"
     }
     
 
     func stop() {
 
-        timerSeconds.invalidate()
-        secondsLastTime = secondsElapsed
-        secondsElapsed = 0
-        
-        mode = .stopped
+        timer.invalidate()
+        self.mode = .stopped
+        self.completedSecondsElapsed = self.secondsElapsed
+        self.secondsElapsed = 0.0
+        self.timeElapsedFormatted = "00:00.00"
 
+    }
+    
+    func formatTime() {
+    
+        let minutes: Int32 = Int32(self.secondsElapsed/60)
+        let minutesString = (minutes < 1) ? "0" : "\(minutes)"
+        
+        let seconds: Int32 = Int32(self.secondsElapsed) - (minutes * 60)
+        let secondsString = (seconds < 1) ? "0" : "\(seconds)"
+        
+        let milliseconds: Int32 = Int32(self.secondsElapsed.truncatingRemainder(dividingBy: 1) * 100)
+        let millisecondsString = (milliseconds < 10) ? "0" : "\(milliseconds)"
+
+        self.timeElapsedFormatted = minutesString + ":" + secondsString + "." + millisecondsString
     }
     
 
     
 
     enum stopWatchMode {
-        case running, stopped, pause
+        case timing
+        case stopped
     }
 }
