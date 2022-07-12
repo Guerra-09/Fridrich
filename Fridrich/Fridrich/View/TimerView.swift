@@ -19,6 +19,7 @@ struct TimerView: View {
     @State var timeStopped: String = "0:0:00"
     @State var pressing: Bool = false
     @State var tapped: Bool = false
+    @State var lastTimes: [String] = []
 
     init(scramble: [String]) {
         self.scramble = getAlgorithm()  
@@ -68,19 +69,43 @@ struct TimerView: View {
         
             
         VStack {
+            
+            HStack {
+                Image(systemName: "questionmark.circle")
+                    .resizable()
+                    .frame(width: 30, height: 30)
+                    .padding(.leading, 30)
+                    .onTapGesture {
+                        //Aqui se supone que se abre un pop up con informacion
+                    }
+                
+                Spacer()
+                Image(systemName: "gear")
+                    .resizable()
+                    .frame(width: 30, height: 30)
+                    .padding(.horizontal, 30)
+                    .onTapGesture {
+                        //Aqui se supone que se abren las configuraciones
+                    }
+            }
+            
+            
          
             VStack {
                 
-                // States: just to see what the user it's doing
-                Text("pressing: \(pressing.description)\nrunning: \(isRunning.description)\nTapped: \(tapped.description)")
+                /// Mark: States: just to see what the user it's doing
+//                Text("pressing: \(pressing.description)\nrunning: \(isRunning.description)\nTapped:                   \(tapped.description)")
+                
                 
                 /// Mark: For the scramble view
-    //            HStack{
-    //                ForEach(scramble, id: \.self) { index in
-    //                    VStack{}
-    //                    Text("\(index) ")
-    //                }
-    //            }
+                // Is not working well (ayua lope)
+//                HStack{
+//                    ForEach(scramble, id: \.self) { index in
+//
+//                        Text("\(index)")
+//
+//                    }
+//                }
 
                 //Time in a square object
                 VStack{
@@ -104,10 +129,13 @@ struct TimerView: View {
                         
                     if isRunning {
                         
+            
                         squareBackground = .red
                         timeStopped = "\(timerViewModel.timeElapsedFormatted)"
+                        lastTimes.append(timeStopped)
                         isRunning = false
                         timerViewModel.stop()
+                        
                         
                         
                     } else {
@@ -123,27 +151,23 @@ struct TimerView: View {
                         
                 }
                 
+                /// Mark:  appended times
+            
                 
-                
+                List {
+                    ForEach(lastTimes, id: \.self) { index in
+                            Text("\(index)")
+                    }
+                // needs .onMove, .OnEdit, ... modifiers.
+                }
+                .padding(.top)
+                .padding(.bottom)
+
             }// End of Vstack #2
     
                 
             }
             .gesture(longPressDrag)
-            
-            
-            
-            /// Mark:  appended times
-        
-//            List {
-//                ForEach(lastTimes, id: \.self){ index in
-//                    Text("\(index)")
-//                }
-//            }
-//            // needs .onMove, .OnEdit, ... modifiers.
-//            .padding(.top)
-//            .padding(.bottom)
-            
             
             
         } // End of Vstack #1
@@ -153,6 +177,40 @@ struct TimerView: View {
 //            
 //            
 //            }
+
+}
+
+
+
+
+
+struct scrambleView: View {
+    
+    @State var scramble: [String]
+    
+    init(scramble: [String]) {
+        self.scramble = getAlgorithm()
+    }
+    
+    var body: some View {
+        
+        VStack {
+            
+            VStack{
+                ForEach(scramble, id: \.self) { index in
+
+                    //Text("\(index)")
+                    Text("\(index.count)")
+
+                }
+            }
+        }
+
+        
+        
+        
+        
+    }
 }
 
 
@@ -163,6 +221,7 @@ struct TimerView: View {
 struct TimerView_Previews: PreviewProvider {
     static var previews: some View {
         TimerView(scramble: getAlgorithm())
+        //scrambleView(scramble: getAlgorithm())
     }
 }
 
